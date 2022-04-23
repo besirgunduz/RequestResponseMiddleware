@@ -1,7 +1,4 @@
-﻿using RequestResponseMiddleware.Library.Interfaces;
-using RequestResponseMiddleware.Library.Models;
-
-namespace RequestResponseMiddleware.Library.LogWriters
+﻿namespace RequestResponseMiddleware.Library.LogWriters
 {
     internal class NullLogWriter : ILogWriter
     {
