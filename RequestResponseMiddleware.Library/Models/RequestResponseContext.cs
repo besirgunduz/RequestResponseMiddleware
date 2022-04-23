@@ -11,23 +11,22 @@ namespace RequestResponseMiddleware.Library.Models
 {
     public class RequestResponseContext
     {
-        private readonly HttpContext _context;
+        internal readonly HttpContext context;
 
         public RequestResponseContext(HttpContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public string RequestBody { get; set; }
         public string ResponseBody { get; set; }
 
         [JsonIgnore]
-        public TimeSpan ResponseCreationTime { get; set; }
+        public TimeSpan? ResponseCreationTime { get; set; }
 
-        public string FormattedCreationTime =>
-            FormattedCreationTime is null
-                ? "00:00:000"
-                : string.Format("{0:mm\\:ss\\.fff}", ResponseCreationTime);
+        public string FormattedCreationTime => FormattedCreationTime is null
+            ? "00:00:000"
+            : string.Format("{0:mm\\:ss\\.fff}", ResponseCreationTime);
 
         public Uri Uri { get; set; }
 
@@ -36,7 +35,7 @@ namespace RequestResponseMiddleware.Library.Models
 
         internal Uri BuildUrl()
         {
-            var url = _context.Request.GetDisplayUrl();
+            var url = context.Request.GetDisplayUrl();
             return new Uri(url, UriKind.RelativeOrAbsolute);
         }
     }
