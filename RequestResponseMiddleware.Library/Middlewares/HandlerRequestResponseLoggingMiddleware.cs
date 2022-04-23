@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using RequestResponseMiddleware.Library.Interfaces;
-using RequestResponseMiddleware.Library.Models;
-
-namespace RequestResponseMiddleware.Library.Middlewares
+﻿namespace RequestResponseMiddleware.Library.Middlewares
 {
     public class HandlerRequestResponseLoggingMiddleware : BaseRequestResponseMiddleware
     {

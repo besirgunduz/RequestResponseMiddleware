@@ -1,16 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.IO;
-using RequestResponseMiddleware.Library.Interfaces;
-using RequestResponseMiddleware.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RequestResponseMiddleware.Library.Middlewares
+﻿namespace RequestResponseMiddleware.Library.Middlewares
 {
     public abstract class BaseRequestResponseMiddleware
     {

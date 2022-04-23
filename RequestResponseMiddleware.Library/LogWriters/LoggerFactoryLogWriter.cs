@@ -1,14 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using RequestResponseMiddleware.Library.Interfaces;
-using RequestResponseMiddleware.Library.MessageCreators;
-using RequestResponseMiddleware.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RequestResponseMiddleware.Library.LogWriters
+﻿namespace RequestResponseMiddleware.Library.LogWriters
 {
     internal class LoggerFactoryLogWriter : ILogWriter
     {
