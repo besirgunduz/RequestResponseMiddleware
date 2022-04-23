@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace RequestResponseMiddleware.Library.Middlewares
 {
-    public class RequestResponseLoggingMiddleware
+    public class RequestResponseLoggingMiddleware : BaseRequestResponseMiddleware
     {
-        private readonly RequestDelegate next;
+        public RequestResponseLoggingMiddleware(RequestDelegate next)
+            : base(next)
+        {
+        }
 
         public async Task Invoke(HttpContext context)
         {
-            //no response
-            await next(context);
-            //response
+            await BaseMiddlewareInvoke(context);
         }
     }
 }
