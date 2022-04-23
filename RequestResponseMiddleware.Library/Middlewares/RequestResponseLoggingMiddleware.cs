@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RequestResponseMiddleware.Library.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace RequestResponseMiddleware.Library.Middlewares
 {
     public class RequestResponseLoggingMiddleware : BaseRequestResponseMiddleware
     {
-        public RequestResponseLoggingMiddleware(RequestDelegate next)
-            : base(next)
+        public RequestResponseLoggingMiddleware(RequestDelegate next, ILogWriter logWriter) :
+            base(next, logWriter)
         {
         }
 

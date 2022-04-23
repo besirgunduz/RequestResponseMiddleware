@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.IO;
+using RequestResponseMiddleware.Library.Interfaces;
 using RequestResponseMiddleware.Library.Models;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace RequestResponseMiddleware.Library.Middlewares
     public abstract class BaseRequestResponseMiddleware
     {
         private readonly RequestDelegate next;
+        private readonly ILogWriter logWriter;
         private readonly RecyclableMemoryStreamManager recyclableMemoryStreamManager;
 
-        public BaseRequestResponseMiddleware(RequestDelegate next)
+        public BaseRequestResponseMiddleware(RequestDelegate next, ILogWriter logWriter)
         {
             this.next = next;
+            this.logWriter = logWriter;
             recyclableMemoryStreamManager = new RecyclableMemoryStreamManager();
         }
 
@@ -45,6 +48,8 @@ namespace RequestResponseMiddleware.Library.Middlewares
                 RequestBody = requestbody,
                 ResponseBody = responseBodyText
             };
+
+            await logWriter.Write(result);
 
             return result;
         }
@@ -76,7 +81,7 @@ namespace RequestResponseMiddleware.Library.Middlewares
 
         private async Task<string> GetRequestBody(HttpContext context)
         {
-            //context.Request.EnableBuffering();
+            context.Request.EnableBuffering();
 
             await using var requestStream = recyclableMemoryStreamManager.GetStream();
             await context.Request.Body.CopyToAsync(requestStream);
